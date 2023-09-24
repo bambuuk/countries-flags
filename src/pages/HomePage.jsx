@@ -34,8 +34,6 @@ const HomePage = () => {
     });
   }, []);
 
-  console.log(countries, filteredCountries);
-
   return (
     <>
       <Controls onSearch={handleSearch} />
