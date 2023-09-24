@@ -9,17 +9,38 @@ import { ALL_COUNTRIES } from "../constants";
 
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
+  const [filteredCountries, setFilteredCountries] = useState(countries);
   const navigate = useNavigate();
 
+  const handleSearch = (search, region) => {
+    let data = [...countries];
+
+    if (region) {
+      data = data.filter((c) => c.region.includes(region));
+    }
+    if (search) {
+      data = data.filter((c) =>
+        c.name.common.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    setFilteredCountries(data);
+  };
+
   useEffect(() => {
-    axios.get(ALL_COUNTRIES).then(({ data }) => setCountries(data));
+    axios.get(ALL_COUNTRIES).then(({ data }) => {
+      setCountries(data);
+      setFilteredCountries(data);
+    });
   }, []);
+
+  console.log(countries, filteredCountries);
 
   return (
     <>
-      <Controls />
+      <Controls onSearch={handleSearch} />
       <List>
-        {countries.map((card) => {
+        {filteredCountries.map((card) => {
           const countryInfo = {
             img: card.flags.png,
             name: card.name.common,
