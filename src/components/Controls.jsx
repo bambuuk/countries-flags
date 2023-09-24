@@ -29,7 +29,7 @@ const Controls = () => {
 
   return (
     <Wrapper>
-      <Search search={search} onChange={setSearch} />
+      <Search search={search} setSearch={setSearch} />
       <CustomSelect
         options={options}
         placeholder="Filter By Region"

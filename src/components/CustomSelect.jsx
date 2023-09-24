@@ -25,8 +25,27 @@ export const CustomSelect = styled(Select).attrs({
   },
 })`
   width: 100%;
+  border-radius: var(--radii);
+  font-family: var(--family);
+  border: none;
+
+  & > * {
+    box-shadow: var(--shadow);
+  }
+
+  & * {
+    color: var(--colors-text) !important;
+  }
+
+  & input {
+    padding-left: 0.25rem;
+  }
+
+  & div[id] {
+    background-color: var(--colors-ui-base);
+  }
 
   @media (min-width: 767px) {
-    width: auto;
+    width: 200px;
   }
 `;
