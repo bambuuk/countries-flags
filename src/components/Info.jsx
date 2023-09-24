@@ -1,5 +1,7 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { filterByCode } from "../constants";
 
 const Wrapper = styled.section`
   margin-top: 3rem;
@@ -93,6 +95,16 @@ const Info = ({
   navigate,
   tld,
 }) => {
+  const [neighbors, setNeighbors] = useState([]);
+
+  useEffect(() => {
+    if (borders.length) {
+      axios
+        .get(filterByCode(borders))
+        .then(({ data }) => setNeighbors(data.map((c) => c.name.common)));
+    }
+  }, [borders]);
+
   return (
     <Wrapper>
       <InfoImage src={flags.png} alt={name.common} />
@@ -141,8 +153,10 @@ const Info = ({
             <span>There is no border</span>
           ) : (
             <TagGroup>
-              {borders.map((b) => (
-                <Tag key={b}>{b} </Tag>
+              {neighbors.map((b) => (
+                <Tag key={b} onClick={() => navigate(`/country/${b}`)}>
+                  {b}{" "}
+                </Tag>
               ))}
             </TagGroup>
           )}
