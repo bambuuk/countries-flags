@@ -30,4 +30,4 @@ It is adapted for all standard mobile device screen sizes.
 - Clone the branch to your computer.
 - Run the **npm run dev** command in the integrated terminal of your IDE to run the project locally.
 - Open the following link to see the project if it hasn't opened automatically: http://localhost:5173.
-- Delete basename from routing file in routing.jsx file and in vite.config.js
+- Delete basename from routing in routing.jsx file and in vite.config.js
