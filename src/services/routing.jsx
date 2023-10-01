@@ -22,8 +22,8 @@ export const routing = createBrowserRouter(
         },
       ],
     },
-  ]
-  // {
-  //   basename: "/countries-flags",
-  // }
+  ],
+  {
+    basename: "/countries-flags",
+  }
 );
